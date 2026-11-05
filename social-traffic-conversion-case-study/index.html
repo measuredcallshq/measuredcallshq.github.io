@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Is Social Worth the Investment? Testing What Tracking Can’t See | Measured Calls</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Is Social Worth the Investment? Testing What Tracking Can’t See" />
+<meta name="author" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Social brings a quarter of an online store’s visits but 0.5% of its revenue. A staged, low-cost test plan to find out whether it can lift total sales before more budget goes in." />
+<meta property="og:description" content="Social brings a quarter of an online store’s visits but 0.5% of its revenue. A staged, low-cost test plan to find out whether it can lift total sales before more budget goes in." />
+<link rel="canonical" href="https://measuredcallshq.github.io/social-traffic-conversion-case-study/" />
+<meta property="og:url" content="https://measuredcallshq.github.io/social-traffic-conversion-case-study/" />
+<meta property="og:site_name" content="Measured Calls" />
+<meta property="og:image" content="https://measuredcallshq.github.io/assets/img/social-traffic/01-conversion-by-channel.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-29T00:00:00-04:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://measuredcallshq.github.io/assets/img/social-traffic/01-conversion-by-channel.png" />
+<meta property="twitter:title" content="Is Social Worth the Investment? Testing What Tracking Can’t See" />
+<script type="application/ld+json">
+{"url":"https://measuredcallshq.github.io/social-traffic-conversion-case-study/","headline":"Is Social Worth the Investment? Testing What Tracking Can’t See","dateModified":"2026-10-29T00:00:00-04:00","datePublished":"2026-10-29T00:00:00-04:00","description":"Social brings a quarter of an online store’s visits but 0.5% of its revenue. A staged, low-cost test plan to find out whether it can lift total sales before more budget goes in.","mainEntityOfPage":{"@type":"WebPage","@id":"https://measuredcallshq.github.io/social-traffic-conversion-case-study/"},"author":{"@type":"Person","name":""},"@type":"BlogPosting","image":"https://measuredcallshq.github.io/assets/img/social-traffic/01-conversion-by-channel.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://measuredcallshq.github.io/feed.xml" title="Measured Calls" /><script defer src="https://cloud.umami.is/script.js" data-website-id="e03cd52a-4199-4e36-b0c2-2d3a0d339734"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">Measured Calls</a><nav class="site-nav">
+      <a class="page-link" href="/#case-studies">Posts</a>
+      <a class="page-link" href="/about/">About</a>
+      <a class="page-link" href="/contact/">Contact</a>
+      <a class="page-link nav-github" href="https://github.com/measuredcallshq/measuredcallshq.github.io" aria-label="View the source on GitHub">
+        <img class="nav-github-icon" src="/assets/img/icons/github.svg" alt="" width="20" height="20">
+      </a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting"><a class="back-link" href="/">&larr; All posts</a><header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Is Social Worth the Investment? Testing What Tracking Can&#39;t See</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-10-29T00:00:00-04:00" itemprop="datePublished">Oct 29, 2026
+      </time></p>
+  </header><nav class="toc" id="toc" aria-label="Contents" hidden>
+    <div class="toc-rail" aria-hidden="true"></div>
+    <div class="toc-panel">
+      <ol class="toc-list"></ol>
+    </div>
+  </nav><div class="post-content e-content" itemprop="articleBody">
+    <p><em>A worked example on Google’s public Merchandise Store data. A five-minute read; method, statistics and test sizing are in the <a href="/social-traffic-conversion-case-study/appendix/">technical appendix</a>, and the queries, code and data in the <a href="https://github.com/measuredcallshq/social-traffic-conversion-case-study">project repository</a>.</em></p>
+
+<div class="summary-card">
+
+  <h2 id="summary">Summary</h2>
+
+  <ul>
+    <li><strong>Where social stands:</strong> social brings a quarter of the store’s visits but only 0.5% of its revenue. Just 0.05% of social visits include a purchase, against 0.77% for outside customers.</li>
+    <li><strong>The question:</strong> should the business invest in social content to lift its sales?</li>
+    <li><strong>The answer:</strong> not yet. Measured directly through the channel, there is little room: getting more social visitors to view products, the step where most are lost, would add at most about $5,500 a year, 0.3% of store revenue. The route that could matter, shoppers who discover products on social and buy later through another channel, can’t be seen in today’s data, so it has to be tested.</li>
+    <li><strong>The recommendation:</strong> don’t invest more yet. Start with two low-cost stages, about ten weeks of staff time and no ad spend, to test whether better landing pages make social visitors engage and come back. Separately, run a regional paid-social test of a specific campaign, the one test that can show whether social lifts the store’s total sales, if the business judges a big win likely enough to risk the test’s ad spend.</li>
+  </ul>
+
+</div>
+
+<h2 id="why-social-is-hard-to-judge">Why social is hard to judge</h2>
+
+<p>Shoppers increasingly find products on social media and buy somewhere else: in one 2024 survey, 73% said they regularly find products while browsing social, but only 10% buy inside the platform (<a href="https://www.chiefmarketer.com/many-discover-products-on-social-media-but-few-purchase/">Coveo, 2025</a>). Those later purchases, through search, a typed-in visit or another device, are largely invisible to click tracking. That’s why platforms such as TikTok now offer regional “geo-lift” tests (<a href="https://ads.tiktok.com/business/en/blog/geo-lift-test">TikTok, 2024</a>).</p>
+
+<p>This case study uses one year of Google’s public Merchandise Store data, from August 2016 to August 2017. Its figures describe that store at that time. <strong>The point is the method:</strong> size what social brings, find where its visitors drop away, and test cheaply, with a stop rule at each step, before committing budget.</p>
+
+<h2 id="what-the-data-shows">What the data shows</h2>
+
+<p><img src="/assets/img/social-traffic/01-conversion-by-channel.png" alt="Figure 1. Visits, conversion and revenue by channel" /></p>
+
+<p><em>Figure 1. Each channel’s share of visits, share of visits with a purchase, and share of revenue. The dashed line is the average for outside customers (0.77%), leaving out Google’s own staff, who would flatter the average.</em></p>
+
+<ul>
+  <li><strong>Social visits rarely buy.</strong> 0.05% include a purchase, against 0.77% for outside customers: <strong>17 times lower</strong>. YouTube brings 94% of social visits and behaves like an awareness audience.</li>
+  <li><strong>Social traffic is shrinking.</strong> Monthly visits fell 95% from their November 2016 peak, so yearly figures overstate what’s ahead.</li>
+  <li><strong>Social’s buyers are a narrow base.</strong> Facebook and Google Groups bring 3% of social visits but 87% of its revenue, and part of that looks like Google employees, a few large orders and one burst in May 2017.</li>
+</ul>
+
+<h2 id="two-ways-social-could-lift-sales">Two ways social could lift sales</h2>
+
+<p><strong>1. Buy in the same visit: little room.</strong> Most social visitors leave before seeing a product: 2 in 100 view one, against 16 in 100 from search. Fixing that step is worth at most about <strong>$5,500 a year</strong> (0.3% of revenue), and less at today’s traffic.</p>
+
+<p><strong>2. Discover on social, buy elsewhere: a route to store-wide lift.</strong> Tracking shows this route adding only about <strong>$400 a year</strong> of later sales beyond what social is already credited with, but that undercounts it: shoppers who switch device or clear cookies look like new visitors, so their purchases are credited elsewhere. One hint is worth testing: social visitors who view a product come back 1.5 to 3.3 times as often.</p>
+
+<p><strong>In short: tracking can’t see all the sales that start on social and finish elsewhere, so further tests are needed to find out whether this channel has missed potential.</strong></p>
+
+<h2 id="the-plan-cheapest-first-each-test-with-its-own-decision">The plan: cheapest first, each test with its own decision</h2>
+
+<p><strong>Organic or paid?</strong> The data can’t tell organic social visits from paid ones, because none carry a campaign tag. The plan doesn’t need to: Stage 2 tests the social traffic the store already gets, at no extra ad cost, and runs until it reaches its planned number of visitors; Stage 3 tests a new paid program, because only paid ads can be switched on in chosen regions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>Question</th>
+      <th>Time</th>
+      <th>Cost</th>
+      <th>Decision</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Groundwork</strong></td>
+      <td>Can we track what the later tests are judged on: paid vs unpaid visits, each visitor’s test group and engaged time, sales by metro area, and who social’s buyers are?</td>
+      <td>2 weeks</td>
+      <td>Staff time</td>
+      <td>None: a prerequisite. Stages 2 and 3 start once link, test-group and engaged-time tracking is live and metro-level sales reporting is in place</td>
+    </tr>
+    <tr>
+      <td><strong>2. Landing-page test</strong></td>
+      <td>After clicking, do social visitors engage more with products and come back more?</td>
+      <td>~8 weeks (engagement); ~18 weeks + 90 days (return visits)</td>
+      <td>Staff time, one page variant</td>
+      <td>Keep the new page if engagement or return visits clearly rise. Either way, Stage 3 can go ahead</td>
+    </tr>
+    <tr>
+      <td><strong>3. Regional paid test</strong></td>
+      <td>Does seeing paid social content lift total store sales?</td>
+      <td>~12–25 weeks</td>
+      <td>The ad budget run in the test regions during the test, plus content</td>
+      <td>Keep daily ad spend in the campaign regions below the ~$113 a day of profit a big win would bring (at a 50% gross margin), so a win pays for itself during the test. Scale to all regions on a clear lift</td>
+    </tr>
+    <tr>
+      <td><strong>4. Decide</strong></td>
+      <td>Scale, or keep social as low-cost awareness</td>
+      <td>Each quarter</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Stages 2 and 3 test different things: Stage 2, what visitors do after they click; Stage 3, whether seeing social content lifts total sales. Start with the cheaper Stage 2, but a “no” there doesn’t block Stage 3, which depends on budget.</p>
+
+<p><strong>Weighing Stage 3.</strong> The regional test can only see a rise of about 15% or more in total sales in the campaign regions: about $83,000 a year of extra sales, ten times what social is credited with today, or about $113 a day of profit at a 50% gross margin. Keep the campaign’s ad spend below $113 a day and a big win pays for itself while the test runs; scaled to all regions, it then keeps adding profit for as long as it works. If it isn’t a big win, the most lost is the ad spend during the test, plus content. How likely a big win is can’t be read from the data: it is an assumption for the decision maker. A “no clear lift” means this campaign isn’t a big win, not that social has no effect.</p>
+
+<h2 id="decisions-needed-now">Decisions needed now</h2>
+
+<ol>
+  <li><strong>Approve Stages 1 and 2.</strong> Staff time only.</li>
+  <li><strong>Agree the thresholds before testing:</strong> the rise in return visits worth acting on (working figure +20%) and the rise in sales worth paying for. Fixing them in advance makes a “no” as clear as a “yes”.</li>
+  <li><strong>Decide whether to run Stage 3.</strong> Weigh the chance of a big win, the decision maker’s assumption, against the test’s ad spend, kept below about $113 a day so a win pays for itself (see “Weighing Stage 3”). If not, smaller paid trials are better judged on tagged paid-link results.</li>
+</ol>
+
+<p><em>For readers interested in more detail, the <a href="/social-traffic-conversion-case-study/appendix/">technical appendix</a> covers the full channel figures and the design and sizing of each test, and the <a href="https://github.com/measuredcallshq/social-traffic-conversion-case-study">project repository</a> holds the queries, code and data behind every number.</em></p>
+
+  </div>
+
+  <aside class="author-box">
+    <p><strong>Measured Calls</strong>: case studies in turning data into business decisions.
+      <a href="/about/">About</a>
+      · <a href="https://github.com/measuredcallshq">GitHub</a>
+    </p>
+  </aside><a class="u-url" href="/social-traffic-conversion-case-study/" hidden></a>
+</article>
+
+<script>
+// Notion-style floating contents: a column of short bars on the right edge,
+// one per heading (shorter for subsections, dark for the section being read).
+// Hovering (or tapping) the bars opens the full list of headings.
+(function () {
+  var nav = document.getElementById("toc");
+  if (!nav) return;
+  var heads = document.querySelectorAll(".post-content h2, .post-content h3");
+  if (heads.length < 3) return;
+  var rail = nav.querySelector(".toc-rail"), list = nav.querySelector(".toc-list");
+  var items = [];
+
+  function slug(t) { return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+
+  heads.forEach(function (h) {
+    if (!h.id) h.id = slug(h.textContent);
+    var lvl = h.tagName === "H2" ? 2 : 3;
+    var bar = document.createElement("span"); bar.className = "toc-bar toc-bar-l" + lvl; rail.appendChild(bar);
+    var li = document.createElement("li"); li.className = "toc-l" + lvl;
+    var a = document.createElement("a"); a.href = "#" + h.id; a.textContent = h.textContent;
+    li.appendChild(a); list.appendChild(li);
+    items.push({ h: h, bar: bar, li: li });
+  });
+  nav.hidden = false;
+
+  // Touch screens have no hover: tap the bars to open, tap a heading or outside to close.
+  rail.addEventListener("click", function () { nav.classList.toggle("open"); });
+  list.addEventListener("click", function (e) { if (e.target.tagName === "A") nav.classList.remove("open"); });
+  document.addEventListener("click", function (e) { if (!nav.contains(e.target)) nav.classList.remove("open"); });
+
+  function setActive(h) {
+    items.forEach(function (it) {
+      var on = it.h === h;
+      it.bar.classList.toggle("active", on);
+      it.li.classList.toggle("active", on);
+      if (on && nav.matches(":hover")) {
+        var p = nav.querySelector(".toc-panel"), top = it.li.offsetTop;
+        if (top < p.scrollTop || top > p.scrollTop + p.clientHeight - 30) p.scrollTop = top - p.clientHeight / 3;
+      }
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target); });
+    }, { rootMargin: "0px 0px -75% 0px" });
+    items.forEach(function (it) { obs.observe(it.h); });
+  }
+})();
+</script>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper"><span class="footer-copyright">&copy; 2026 Measured Calls
+      · <a href="https://github.com/measuredcallshq">GitHub</a>
+      · <a href="/feed.xml">RSS</a>
+      · <a href="/privacy/">Privacy</a></span>
+  </div>
+
+</footer>
+</body>
+
+</html>
