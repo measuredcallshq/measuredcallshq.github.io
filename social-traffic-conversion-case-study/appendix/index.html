@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Technical appendix: Is Your Social Investment Paying Off? How to Measure What Reports Miss | Measured Calls</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Technical appendix: Is Your Social Investment Paying Off? How to Measure What Reports Miss" />
+<meta name="author" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Method, statistics, test sizing and full tables behind the case study on whether social traffic can lift a store’s total sales." />
+<meta property="og:description" content="Method, statistics, test sizing and full tables behind the case study on whether social traffic can lift a store’s total sales." />
+<link rel="canonical" href="https://measuredcallshq.github.io/social-traffic-conversion-case-study/appendix/" />
+<meta property="og:url" content="https://measuredcallshq.github.io/social-traffic-conversion-case-study/appendix/" />
+<meta property="og:site_name" content="Measured Calls" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-29T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Technical appendix: Is Your Social Investment Paying Off? How to Measure What Reports Miss" />
+<script type="application/ld+json">
+{"url":"https://measuredcallshq.github.io/social-traffic-conversion-case-study/appendix/","headline":"Technical appendix: Is Your Social Investment Paying Off? How to Measure What Reports Miss","dateModified":"2026-10-29T00:00:00-04:00","datePublished":"2026-10-29T00:00:00-04:00","description":"Method, statistics, test sizing and full tables behind the case study on whether social traffic can lift a store’s total sales.","mainEntityOfPage":{"@type":"WebPage","@id":"https://measuredcallshq.github.io/social-traffic-conversion-case-study/appendix/"},"author":{"@type":"Person","name":""},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://measuredcallshq.github.io/feed.xml" title="Measured Calls" /><script defer src="https://cloud.umami.is/script.js" data-website-id="e03cd52a-4199-4e36-b0c2-2d3a0d339734"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">Measured Calls</a><nav class="site-nav">
+      <a class="page-link" href="/#case-studies">Posts</a>
+      <a class="page-link" href="/about/">About</a>
+      <a class="page-link" href="/contact/">Contact</a>
+      <a class="page-link nav-github" href="https://github.com/measuredcallshq/measuredcallshq.github.io" aria-label="View the source on GitHub">
+        <img class="nav-github-icon" src="/assets/img/icons/github.svg" alt="" width="20" height="20">
+      </a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry post--reference" itemscope itemtype="http://schema.org/BlogPosting"><a class="back-link" href="/social-traffic-conversion-case-study/">&larr; Back to the case study</a><header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Technical appendix: Is Your Social Investment Paying Off? How to Measure What Reports Miss</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-10-29T00:00:00-04:00" itemprop="datePublished">Oct 29, 2026
+      </time></p>
+  </header><nav class="toc" id="toc" aria-label="Contents" hidden>
+    <div class="toc-rail" aria-hidden="true"></div>
+    <div class="toc-panel">
+      <ol class="toc-list"></ol>
+    </div>
+  </nav><div class="post-content e-content" itemprop="articleBody">
+    <p><em>Method, statistics and full tables for the case study <a href="/social-traffic-conversion-case-study/">Is Your Social Investment Paying Off? How to Measure What Reports Miss</a>.</em></p>
+
+<h2 id="analysts-notes-the-calls-that-shaped-the-conclusions">Analyst’s notes: the calls that shaped the conclusions</h2>
+
+<ul>
+  <li><strong>Employees are left out of the comparisons.</strong> Google’s internal sites bring 38% of revenue and convert at 7.45%, but those buyers are staff using the company store. The store average used for comparison (0.77%, $1.32 a visit) and the regional test both leave them out; the all-in figures are shown alongside.</li>
+  <li><strong>The year’s averages hide a collapse in volume.</strong> Social visits fell 95% from their November 2016 peak, and a third of the year’s social purchases came in May 2017. The report flags both rather than treating the year as steady.</li>
+  <li><strong>The 23× landing-page gap is mostly audience mix.</strong> Within YouTube the comparison is inconclusive (8 purchases), so the report recommends a randomized test rather than a redesign.</li>
+  <li><strong>Product views go with coming back, but that isn’t proof.</strong> Viewers return 1.5–3.3 times as often, which is promising but open to self-selection, so it motivates a test rather than a conclusion.</li>
+  <li><strong>The purchase count depends on attribution, and so does path two.</strong> Counting only visits that arrived through a social link gives fewer purchasing visits; Google Analytics’ default, which also credits later direct returns to social, gives 104. The report uses the default throughout so every table agrees. The same default means most later purchases by social-first visitors are already in social’s revenue, so the report counts only the part credited elsewhere (about $400) as path two’s visible addition.</li>
+  <li><strong>The regional test is sized on outside customers, by simulation.</strong> Staff orders, the Bay Area and Venezuela’s bulk buyer are left out, the test is sized by simulating it on the store’s own weekly orders rather than by formula, and the chance of a big win is left to the decision maker (<a href="#detail-stage-3-regional-test">Stage 3</a>).</li>
+  <li><strong>The Stage 2 return-visit test is sized to answer either way.</strong> It runs against a rise fixed in advance (+20%), so a clear “no” is as usable as a “yes” (<a href="#detail-stage-2-test-design">Stage 2</a>).</li>
+  <li><strong>A landing page can inflate its own metric.</strong> Landing on a product page records a product view, so a product view counts only in a visit that doesn’t bounce. Engaged time is measured as the share of visits over a set length, because Google Analytics records one-page visits as zero seconds and the median YouTube visit is therefore zero.</li>
+  <li><strong>“Organic” traffic may include untagged ads.</strong> No social visit carries a campaign tag, and the public data removes Google’s ad-click details, so some of it may be untagged ads and its cost is unknown. The report treats the data as recorded; if part of it was paid, the case against social as a sales channel only gets stronger.</li>
+</ul>
+
+<h2 id="detail-where-social-stands-section-1">Detail: where social stands (Section 1)</h2>
+
+<p><strong>Full channel table</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Channel</th>
+      <th>Visits</th>
+      <th>Share of visits</th>
+      <th>Purchasing visits</th>
+      <th>Conversion</th>
+      <th>Revenue</th>
+      <th>Share of revenue</th>
+      <th>Revenue per visit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Organic search</td>
+      <td>381,561</td>
+      <td>42%</td>
+      <td>3,443</td>
+      <td>0.90%</td>
+      <td>$377,076</td>
+      <td>21%</td>
+      <td>$0.99</td>
+    </tr>
+    <tr>
+      <td><strong>Social</strong></td>
+      <td><strong>226,117</strong></td>
+      <td><strong>25%</strong></td>
+      <td><strong>104</strong></td>
+      <td><strong>0.05%</strong></td>
+      <td><strong>$8,397</strong></td>
+      <td><strong>0.5%</strong></td>
+      <td><strong>$0.04</strong></td>
+    </tr>
+    <tr>
+      <td>Direct</td>
+      <td>143,026</td>
+      <td>16%</td>
+      <td>2,061</td>
+      <td>1.44%</td>
+      <td>$498,530</td>
+      <td>28%</td>
+      <td>$3.49</td>
+    </tr>
+    <tr>
+      <td>Referral: Google internal sites</td>
+      <td>68,933</td>
+      <td>8%</td>
+      <td>5,136</td>
+      <td>7.45%</td>
+      <td>$678,848</td>
+      <td>38%</td>
+      <td>$9.85</td>
+    </tr>
+    <tr>
+      <td>Referral: other sites</td>
+      <td>35,905</td>
+      <td>4%</td>
+      <td>186</td>
+      <td>0.52%</td>
+      <td>$38,753</td>
+      <td>2%</td>
+      <td>$1.08</td>
+    </tr>
+    <tr>
+      <td>Paid search</td>
+      <td>25,326</td>
+      <td>3%</td>
+      <td>469</td>
+      <td>1.85%</td>
+      <td>$47,543</td>
+      <td>3%</td>
+      <td>$1.88</td>
+    </tr>
+    <tr>
+      <td>Affiliates</td>
+      <td>16,403</td>
+      <td>2%</td>
+      <td>9</td>
+      <td>0.05%</td>
+      <td>$654</td>
+      <td>0.04%</td>
+      <td>$0.04</td>
+    </tr>
+    <tr>
+      <td>Display</td>
+      <td>6,262</td>
+      <td>0.7%</td>
+      <td>143</td>
+      <td>2.28%</td>
+      <td>$130,337</td>
+      <td>7%</td>
+      <td>$20.81</td>
+    </tr>
+    <tr>
+      <td><strong>Whole store</strong></td>
+      <td><strong>903,653</strong></td>
+      <td>100%</td>
+      <td><strong>11,552</strong></td>
+      <td><strong>1.28%</strong></td>
+      <td><strong>$1,780,149</strong></td>
+      <td>100%</td>
+      <td><strong>$1.97</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Whole store, excluding Google internal sites</strong></td>
+      <td><strong>834,720</strong></td>
+      <td>92%</td>
+      <td><strong>6,416</strong></td>
+      <td><strong>0.77%</strong></td>
+      <td><strong>$1,101,301</strong></td>
+      <td>62%</td>
+      <td><strong>$1.32</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>A purchasing visit includes at least one order. Totals include 120 visits not assigned to a channel. Referral is split in two: most Referral revenue comes from Google’s own internal sites, mainly mall.googleplex.com, which is effectively employees buying from the company store, so it is shown separately from marketing traffic. Google obfuscates some fields in this public sample (such as visitor IDs) and removes others; it doesn’t say revenue is changed, but treat the figures as sample data rather than audited sales. Google Merchandise Store, Aug 2016 – Aug 2017.</em></p>
+
+<p><strong>Social by source</strong></p>
+
+<p><img src="/assets/img/social-traffic/05-social-monthly.png" alt="Figure 2. Social visits and purchasing visits by month" /></p>
+
+<p><em>Figure 2. Social visits (top) and purchasing visits (bottom) by month. Monthly visits fell from 57,000 in November 2016 to under 3,000 in June 2017.</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Visits</th>
+      <th>Share of social visits</th>
+      <th>Purchasing visits</th>
+      <th>Revenue</th>
+      <th>Share of social revenue</th>
+      <th>Revenue per visit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>YouTube</td>
+      <td>212,602</td>
+      <td>94%</td>
+      <td>11</td>
+      <td>$355</td>
+      <td>4%</td>
+      <td>$0.002</td>
+    </tr>
+    <tr>
+      <td>Facebook</td>
+      <td>6,456</td>
+      <td>3%</td>
+      <td>39</td>
+      <td>$5,564</td>
+      <td>66%</td>
+      <td>$0.86</td>
+    </tr>
+    <tr>
+      <td>Google Groups</td>
+      <td>1,025</td>
+      <td>0.5%</td>
+      <td>38</td>
+      <td>$1,775</td>
+      <td>21%</td>
+      <td><strong>$1.73</strong></td>
+    </tr>
+    <tr>
+      <td>Twitter</td>
+      <td>1,529</td>
+      <td>0.7%</td>
+      <td>7</td>
+      <td>$314</td>
+      <td>4%</td>
+      <td>$0.21</td>
+    </tr>
+    <tr>
+      <td>All others</td>
+      <td>4,505</td>
+      <td>2%</td>
+      <td>9</td>
+      <td>$388</td>
+      <td>5%</td>
+      <td>$0.09</td>
+    </tr>
+    <tr>
+      <td><strong>All social</strong></td>
+      <td><strong>226,117</strong></td>
+      <td>100%</td>
+      <td><strong>104</strong></td>
+      <td><strong>$8,397</strong></td>
+      <td>100%</td>
+      <td><strong>$0.04</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>“All others” combines Reddit, Quora and smaller sources.</em></p>
+
+<p><strong>Who the buyers are.</strong> Three signs point to a narrower base than the totals suggest:</p>
+
+<ul>
+  <li><strong>Google Groups looks partly internal.</strong> It converts at 3.7%, well above every channel except Google’s internal sites, with exactly one order per purchase. Google uses Google Groups for its own mailing lists, so some of these buyers are probably employees, the same audience the report separates out in the channel table.</li>
+  <li><strong>Facebook’s revenue rests on a few orders.</strong> 13 visits from Facebook’s link redirect (l.facebook.com) placed 30 orders worth $3,124, 37% of all social revenue.</li>
+  <li><strong>The buying is bunched in time.</strong> 33 of social’s 104 purchasing visits came in May 2017, 18 of them on May 1–4, in one of the quietest months for social visits (Figure 2).</li>
+</ul>
+
+<h2 id="detail-path-one-section-2">Detail: path one (Section 2)</h2>
+
+<p><strong>Product views</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Social</th>
+      <th>Search</th>
+      <th>Direct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Viewed a product (of all visitors)</td>
+      <td><strong>2.1%</strong></td>
+      <td>16.4%</td>
+      <td>14.8%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>By audience</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Audience</th>
+      <th>Visits</th>
+      <th>Viewed a product</th>
+      <th>Purchases per product viewer</th>
+      <th>Revenue per purchasing visit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>YouTube</td>
+      <td>212,602</td>
+      <td>1.6%</td>
+      <td>0.3%</td>
+      <td>$32</td>
+    </tr>
+    <tr>
+      <td>Facebook and Google Groups</td>
+      <td>7,481</td>
+      <td>12.6%</td>
+      <td>8.2%</td>
+      <td>$95</td>
+    </tr>
+    <tr>
+      <td>Other social</td>
+      <td>6,034</td>
+      <td>7.0%</td>
+      <td>3.8%</td>
+      <td>$44</td>
+    </tr>
+    <tr>
+      <td><em>Search, for comparison</em></td>
+      <td><em>381,561</em></td>
+      <td><em>16.4%</em></td>
+      <td><em>5.5%</em></td>
+      <td><em>$110</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Facebook and Google Groups’ revenue per purchasing visit is lifted by a few large orders.</em></p>
+
+<p><strong>Landing page.</strong> Nine in ten social visitors land on the home page, and those who land on a product or category page convert 23 times better. Most of that gap is about <strong>who arrives</strong>: the home page gets almost only YouTube visitors. Among YouTube visitors there are too few purchases (8) to tell whether the page matters; among other social visitors, product pages convert about 2.6 times better, but people who clicked a link to a specific product were probably more ready to buy. Only a randomized test can show what changing the page would achieve.</p>
+
+<p><strong>What this path is worth</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Audience</th>
+      <th>If product views rise to</th>
+      <th>Extra purchases a year</th>
+      <th>Extra revenue a year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>YouTube</td>
+      <td>1.5 times today (2.4%)</td>
+      <td>about 6</td>
+      <td>about $200</td>
+    </tr>
+    <tr>
+      <td>YouTube</td>
+      <td>Search’s rate (16.4%)</td>
+      <td>about 100</td>
+      <td>about $3,200</td>
+    </tr>
+    <tr>
+      <td>Facebook and Google Groups</td>
+      <td>Search’s rate (16.4%)</td>
+      <td>about 23</td>
+      <td>about $2,200</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are <strong>best-case figures</strong>: they assume new product viewers buy like today’s. Together, the two cases that raise views to search’s rate add about $5,500 a year, about 0.3% of store revenue (0.5% of sales to outside customers). They use the past year’s traffic; at the mid-2017 rate of social visits (28% of the year’s average) they would be about $1,500 a year.</p>
+
+<h2 id="detail-path-two-section-2">Detail: path two (Section 2)</h2>
+
+<p><strong>What tracking can see.</strong> Following first-time visitors whose first visit came from social:</p>
+
+<ul>
+  <li><strong>209,903</strong> first-time visitors arrived from social.</li>
+  <li><strong>4.1%</strong> came back at least once.</li>
+  <li><strong>33</strong> bought on a later visit, for about <strong>$3,800</strong> of revenue. All but one came back without clicking a social link, most often by typing the address.</li>
+  <li><strong>Most of this is already in social’s figures.</strong> Google Analytics’ default attribution credits a typed-in return to the channel that first brought the visitor. So 21 of the 33 buyers, and about $3,360 of the $3,800, are already part of social’s $8,400. Only <strong>12 buyers and about $400</strong> are credited to other channels, such as search. Path two’s visible revenue is therefore about $400 on top of path one, not $3,800.</li>
+</ul>
+
+<p>These are <strong>minimums</strong>. Visits are linked by a browser cookie, so a visitor who comes back on another device or after clearing cookies looks like a new visitor, and their purchase is credited elsewhere. Tracking can’t see sales that happen this way, or in physical stores.</p>
+
+<p><strong>Product views and coming back.</strong> Visitors who viewed a product on their first visit came back <strong>3.3 times</strong> as often from YouTube (12.0% vs 3.6%) and <strong>1.5 times</strong> as often from other social (17.1% vs 11.5%). Both differences are well beyond chance (p &lt; 0.001). For later purchases the counts are too small to say: 7 buyers among YouTube visitors ($180 of revenue in all) and 26 among other social visitors. The full table, with intervals, is under “Product views and later purchases” below.</p>
+
+<p><strong>What this does and doesn’t show.</strong> It is consistent with product views building interest that brings people back. But it can’t separate cause from selection: visitors who were already interested are more likely both to view a product and to return. The data is also limited by cookie loss, small numbers of later buyers, and a one-year window.</p>
+
+<h2 id="detail-stage-1">Detail: Stage 1</h2>
+
+<p>Four gaps in today’s data would block the later stages:</p>
+
+<ul>
+  <li><strong>Cost.</strong> No social link is tagged, so the store can’t tell paid visits from unpaid ones or compare spend with return. Tagging every paid link fixes that from now on.</li>
+  <li><strong>Sales by region.</strong> Stage 3 compares regions, so the store needs total sales, from every channel, by region, for example metro areas from shipping addresses. One year of history is enough to estimate how much regions vary; checking the test against the store’s own past weeks needs two years at minimum and about three to do it well (“Limits” under <a href="#detail-stage-3-regional-test">Stage 3</a>). Google’s internal store is kept separate, since its buyers are employees.</li>
+  <li><strong>Markets the ads can target.</strong> How many regions the campaign can be switched on in, and which large metros can be split (for example into groups of postal codes). The test’s precision depends on it (“Design” under <a href="#detail-stage-3-regional-test">Stage 3</a>).</li>
+  <li><strong>Who social’s buyers are.</strong> For the Facebook and Google Groups purchases: their dates, regions, order sizes and whether the same buyers repeat. If most are employees, a single bulk buyer or the May 2017 burst, social’s sales to ordinary customers are even smaller than reported.</li>
+</ul>
+
+<p>All of this is staff time (analytics and marketing operations), not ad spend.</p>
+
+<p><strong>Go or stop:</strong> proceed once the first three are in place.</p>
+
+<h2 id="detail-stage-2-test-design">Detail: Stage 2 test design</h2>
+
+<p>The test is a <strong>randomized test</strong> (an A/B test): YouTube visitors are split at random between the current home-page landing and a relevant product or category page, and the results are compared. Random assignment makes the two groups alike, so any difference comes from the change, not from who the visitors are. It is judged on the share who view a product and don’t bounce, on engaged time, and on return visits.</p>
+
+<p><strong>Size and length.</strong> At mid-2017 traffic (all social visits then, about 174 a day; YouTube is most but not all of it, so it may take somewhat longer) the test needs about 4,700 YouTube visitors per group, about eight weeks, to detect a 50% rise in product views (about 1.6% of YouTube visitors today), at 5% significance and 80% power. A large change is tested because only a large change could show up in return visits.</p>
+
+<p><strong>Count a product view only if the visitor doesn’t bounce.</strong> A visitor who lands on a product page counts as having viewed a product on arrival, so “share who view a product” would rise automatically. Counting only visits that view a product and go on to do something else (another page or an interaction) fixes that, and applies the same rule to both groups: in the current home-page version, reaching a product already takes a second page. Today’s YouTube rate on this definition is a little under 1.6%; Stage 1 re-measures it.</p>
+
+<p><strong>Add engaged time as a second measure, defined so it can move.</strong> Time spent says more about interest than a count of pages, but the median doesn’t work here. Google Analytics measures time only up to a visit’s last recorded action, so a one-page visit counts as zero seconds. Two-thirds of YouTube visits bounce, so the median visit lasts zero seconds in both groups, whatever the test does. Use instead the share of visits that last at least a set time (for example, one minute), fixed before the test, with its baseline taken from Stage 1 data. Longer visits can also mean confusion, so read time together with product views, not instead of them.</p>
+
+<p>Purchases are too rare to judge this test on (a 50% rise in social purchases would take more than five years to detect). <strong>Return visits are the bridge to path two:</strong> if the group shown more products also comes back more, that is the first sign that better first visits feed later sales. Read them at 30 days (about 80% of the later purchases seen in the data came within 30 days) for an early look, and at 90 days for the decision. It isn’t proof of extra sales, which is what Stage 3 tests.</p>
+
+<p><strong>Size the test to settle the return-visit question either way.</strong> A test that can only say “returns rose” or “not shown” isn’t enough to decide whether better first visits are worth keeping. So the test runs long enough to give a clear answer in both directions:</p>
+
+<ul>
+  <li><strong>Set, before the test, the smallest rise in return visits worth acting on.</strong> The working figure is <strong>+20%</strong> (from about 3.7% of YouTube visitors to about 4.5%). It is roughly the rise the data suggests if product views reached 10% of YouTube visitors (see “How far return visits could move” below). Returns matter here as a sign that the mechanism works, not for their own revenue: at today’s rates the extra returners would add little direct revenue, and the money question is left to Stage 3. The team can change the figure, but it has to be fixed in advance.</li>
+  <li><strong>Size the test for that figure.</strong> About 11,200 YouTube visitors per group, about 18 weeks at mid-2017 traffic. The product-view reading comes from the same test at about 8 weeks; the test keeps running for the return visits. The 3.7% is the share who ever came back within the year; the 90-day share is lower, which could stretch the test to about 28 weeks, so Stage 1 re-measures it and the length is fixed before launch.</li>
+  <li><strong>Read the result with its range, against the pre-set figure.</strong>
+    <ul>
+      <li><strong>Returns rose</strong> (the range sits above zero): first evidence that better first visits bring people back. Keep the new page, and count the result as a point in favor of Stage 3.</li>
+      <li><strong>No meaningful rise</strong> (the whole range sits below +20%): a rise worth acting on is ruled out. Stop investing in YouTube landing changes. Stage 3 can still go ahead, since it tests a different question.</li>
+      <li><strong>Still unclear</strong> (the range spans both): at the planned size this happens about one time in five. Extend the test rather than treat it as either answer.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A clear “no” is as useful as a clear “yes”: it saves further work on landing pages. One limit applies to both: returns on another device or after clearing cookies are invisible in both groups, so they shrink the measured rise. A clear “no” rules out a meaningful rise in <em>tracked</em> returns, which makes path two unlikely but can’t close it completely.</p>
+
+<p><strong>Go or stop:</strong> for path one, continue if engagement with products rises meaningfully; otherwise stop investing in YouTube landing changes. For path two, follow the return-visit reading above.</p>
+
+<h2 id="detail-stage-3-regional-test">Detail: Stage 3 regional test</h2>
+
+<p>The test switches a paid social campaign on in randomly chosen regions and compares their total sales, from every channel, with the other regions’. It is sized by simulating it thousands of times on the store’s own weekly orders by region; every figure here comes from the <code class="language-plaintext highlighter-rouge">geo_lift.py</code> notebook in the project repository. For readers who want to explore the simulation itself, the notebook is also available as a <a href="/assets/social-traffic/geo_lift.html">static, non-interactive page</a> showing its results; download the <a href="https://github.com/measuredcallshq/social-traffic-conversion-case-study">project repository</a> and run <code class="language-plaintext highlighter-rouge">geo_lift.py</code> to explore it interactively.</p>
+
+<p><strong>What the data shows.</strong> Outside customers place about <strong>105 orders a week</strong>: $914,852 of sales over 52 weeks, $2,513 a day. Two markets are left out of the test: the Bay Area, where many buyers are Google staff, and Venezuela, where one bulk buyer placed two thirds of its orders in four weeks. Spread across regions, that is very little: New York, the largest named metro, gets about 11 orders a week, and most others one to four.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Orders a week</th>
+      <th>Share of orders</th>
+      <th>Sales, 52 weeks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>US, metro hidden in the public data</td>
+      <td>64.0</td>
+      <td>61%</td>
+      <td>$587,766</td>
+    </tr>
+    <tr>
+      <td>New York</td>
+      <td>11.3</td>
+      <td>11%</td>
+      <td>$95,400</td>
+    </tr>
+    <tr>
+      <td>Outside the US (except Canada and Venezuela)</td>
+      <td>4.8</td>
+      <td>5%</td>
+      <td>$32,805</td>
+    </tr>
+    <tr>
+      <td>Other US metros (under 40 orders a year each)</td>
+      <td>4.3</td>
+      <td>4%</td>
+      <td>$19,747</td>
+    </tr>
+    <tr>
+      <td>Chicago</td>
+      <td>3.9</td>
+      <td>4%</td>
+      <td>$43,268</td>
+    </tr>
+    <tr>
+      <td>Los Angeles</td>
+      <td>3.7</td>
+      <td>4%</td>
+      <td>$30,710</td>
+    </tr>
+    <tr>
+      <td>Canada</td>
+      <td>3.1</td>
+      <td>3%</td>
+      <td>$25,361</td>
+    </tr>
+    <tr>
+      <td>Seattle–Tacoma</td>
+      <td>2.5</td>
+      <td>2%</td>
+      <td>$17,268</td>
+    </tr>
+    <tr>
+      <td>Austin</td>
+      <td>2.3</td>
+      <td>2%</td>
+      <td>$12,888</td>
+    </tr>
+    <tr>
+      <td>Five more metros (Roanoke, Atlanta, Houston, Boston, Washington DC)</td>
+      <td>0.8–1.4 each</td>
+      <td>5%</td>
+      <td>$49,639</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Outside customers, Aug 2016 – Jul 2017 (52 weeks). Location is Google Analytics’ estimate from the visit’s IP address, not a shipping address. A real test would locate every order by shipping address (<a href="#detail-stage-1">Stage 1</a>), so the sizing below spreads all 105 orders a week across the planned regions.</em></p>
+
+<p><strong>How weekly orders vary.</strong> Three numbers, fitted to the 11 named metros (the Bay Area is left out of the test but kept in this fit), describe the noise:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Measure</th>
+      <th>Estimate</th>
+      <th>95% range</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clumping</td>
+      <td>1.29</td>
+      <td>0.78–1.54</td>
+      <td>Weekly variance is about 1.3 times what independent purchases would give: one decision often produces several orders</td>
+    </tr>
+    <tr>
+      <td>Regional swing</td>
+      <td>34%</td>
+      <td>0–48%</td>
+      <td>A typical week’s swing in a region’s own level, beyond chance</td>
+    </tr>
+    <tr>
+      <td>Persistence</td>
+      <td>0.24</td>
+      <td>0.00–0.73</td>
+      <td>Share of one week’s swing still there the next week</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The ranges come from rebuilding the year from random 4-week blocks and refitting each time. They are wide because only New York and the Bay Area are large enough to show their own swing; in the smaller metros, chance dominates. The model (counts around a hidden regional level that carries from week to week) follows Zeger (1988); the ranges use a moving block bootstrap (Künsch, 1989).</p>
+
+<p><strong>Design</strong></p>
+
+<ul>
+  <li><strong>Regions:</strong> about 24 markets the campaign can target. This is a working assumption (about 20 metros plus a few countries) to replace with the store’s own count; fewer markets give a larger detectable rise. Any market over 10% of orders is split, for example into groups of postal codes: 28 regions in all.</li>
+  <li><strong>Assignment:</strong> regions are paired by size, and a coin flip in each pair picks the campaign region, so each group gets about half the orders.</li>
+  <li><strong>Measure:</strong> the change in the campaign group’s orders relative to the comparison group’s, from the year before the test to the test window: 13 weeks of ads plus 4 weeks of follow-up to catch later purchases.</li>
+  <li><strong>Judged</strong> at 5% significance (two-sided) with 80% power. The final reading can use randomization inference (repeating the comparison over all possible coin flips), which needs no assumption about the shape of the data.</li>
+</ul>
+
+<p><strong>Smallest detectable rise and spend cap, by length</strong> (4 weeks of follow-up, 50% gross margin)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Weeks of ads</th>
+      <th>Smallest rise detected 80% of the time</th>
+      <th>95% range</th>
+      <th>Spend cap</th>
+      <th>Per day of ads</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4</td>
+      <td>38%</td>
+      <td>29–46%</td>
+      <td>$13,200</td>
+      <td>$472</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>30%</td>
+      <td>24–38%</td>
+      <td>$15,900</td>
+      <td>$285</td>
+    </tr>
+    <tr>
+      <td><strong>13</strong></td>
+      <td><strong>27%</strong></td>
+      <td><strong>21–35%</strong></td>
+      <td><strong>$20,500</strong></td>
+      <td><strong>$225</strong></td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>22%</td>
+      <td>17–28%</td>
+      <td>$28,800</td>
+      <td>$158</td>
+    </tr>
+    <tr>
+      <td>52</td>
+      <td>18%</td>
+      <td>14–27%</td>
+      <td>$43,600</td>
+      <td>$120</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Spend cap = gross margin × rise × the campaign group’s normal sales over the ads and follow-up weeks ($1,257 a day). It is the most the ads can cost and still break even if the rise is exactly the smallest detectable one.</em></p>
+
+<p>Longer tests see smaller rises but allow less spend a day, because the rise has to repay more days of ads. The plan uses 13 weeks, a quarter: doubling it only brings the detectable rise from 27% to 22%, and delays the answer.</p>
+
+<p><strong>A check against the real weeks.</strong> Replaying fake tests on the real regions’ own weeks, with no change made, shows less noise than the model: the smallest detectable rise at 13 weeks comes out nearer 15%. The plan doesn’t rely on it: within one year (see “Limits” below) the replays overlap, compare against at most 38 weeks of history, use only the 13 regions with a known location, and give unstable results. The model is built to be cautious (every region gets large swings that carry over), so 27% is more likely too high than too low, though a worse year than this one could be noisier.</p>
+
+<p><strong>Reading the result</strong> (13 weeks)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Measured rise in the campaign group</th>
+      <th>Reading</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Below 18%</td>
+      <td>No evidence the ads did anything</td>
+    </tr>
+    <tr>
+      <td>18% or more</td>
+      <td>The ads did something; the measured rise is the best estimate of the true one</td>
+    </tr>
+    <tr>
+      <td>About 27% or more</td>
+      <td>The best estimate is that the campaign at least broke even at the spend cap</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>True rise</th>
+      <th>Chance the test detects it</th>
+      <th>Profit at the spend cap, before content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0% (no effect)</td>
+      <td>2.5% (a false alarm)</td>
+      <td>−$20,500</td>
+    </tr>
+    <tr>
+      <td>14% (half the detectable rise)</td>
+      <td>32%</td>
+      <td>−$10,200</td>
+    </tr>
+    <tr>
+      <td>27% (the detectable rise)</td>
+      <td>80%</td>
+      <td>$0</td>
+    </tr>
+    <tr>
+      <td>41%</td>
+      <td>98%</td>
+      <td>+$10,200</td>
+    </tr>
+    <tr>
+      <td>55% (double)</td>
+      <td>about 100%</td>
+      <td>+$20,500</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The detection chance is not the chance that a reported rise is real: that also depends on how likely the campaign was to work in the first place, which is the decision maker’s assumption. Confirming payback, rather than any rise, would need a stricter test.</p>
+
+<p><strong>Limits</strong></p>
+
+<ul>
+  <li><strong>One year of data.</strong> Enough to estimate the noise roughly, not to check the test on the store’s own history. Replaying a 13-week test properly needs about three years of weekly sales by region, two at minimum: a full year to compare against plus several test-length windows. Four years would roughly halve the range on the regional swing.</li>
+  <li><strong>The test counts orders.</strong> The money figures assume the average order doesn’t change; revenue swings more than orders because of a few large ones.</li>
+  <li><strong>Spillover.</strong> People who see the ads in a campaign region and shop from a comparison region shrink the measured rise.</li>
+</ul>
+
+<h2 id="data">Data</h2>
+
+<ul>
+  <li><strong>Google Merchandise Store</strong>, BigQuery public dataset <code class="language-plaintext highlighter-rouge">bigquery-public-data.google_analytics_sample</code>: real Google Analytics data from Google’s online merchandise store, Aug 2016 – Aug 2017. Google obfuscates some fields (such as visitor IDs) and removes others (such as ad-click details and city). Country is available for every visit; US state for about 60% of US purchasing visits; the US metro area is hidden for most of the regional test’s orders (see the region table under <a href="#detail-stage-3-regional-test">Stage 3</a>). 903,653 visits, of which 226,117 social.</li>
+  <li><strong>Visits</strong> are Google Analytics sessions. <strong>Purchasing visits</strong> are sessions with at least one transaction; the 104 social purchasing visits contain 131 orders.</li>
+  <li><strong>Attribution:</strong> Google Analytics’ default. A visitor who first came from social and later returns by typing the address is still credited to social.</li>
+  <li><strong>Product views</strong> use Google Analytics’ e-commerce product detail view action.</li>
+  <li><strong>Referral split:</strong> in Google Analytics’ channel report, 68,933 Referral visits show their source as “(direct)”. Each has a referral path, and the referrer recorded on the visit’s first hit is mostly mall.googleplex.com (51,585 visits, $445,000 of revenue), with other internal Google sites such as an employee perks site. The rest have no referrer recorded and are mostly flagged as direct returns of the same visitors. They are shown as “Referral: Google internal sites” rather than moved to Direct, because they arrived through links, not typed addresses.</li>
+  <li><strong>Sources:</strong> Facebook combines facebook.com, m.facebook.com and l.facebook.com. Facebook’s revenue includes a few large orders: its link-click visits placed 30 orders in 13 sessions.</li>
+</ul>
+
+<h2 id="landing-page-comparison">Landing-page comparison</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Landing page</th>
+      <th>YouTube visitors</th>
+      <th>Other social visitors</th>
+      <th>All social</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Home page</td>
+      <td>0.004% (7 of 198,830)</td>
+      <td>0.34% (21 of 6,117)</td>
+      <td>0.014%</td>
+    </tr>
+    <tr>
+      <td>Product or category pages</td>
+      <td>0.008% (1 of 13,200)</td>
+      <td>0.90% (64 of 7,086)</td>
+      <td>0.32%</td>
+    </tr>
+    <tr>
+      <td>Ratio, with 95% confidence interval</td>
+      <td>2.2× (0.05× to 17×)</td>
+      <td>2.6× (1.6× to 4.5×)</td>
+      <td>23× (15× to 38×)</td>
+    </tr>
+    <tr>
+      <td>p-value (exact test)</td>
+      <td>0.40</td>
+      <td>&lt; 0.001</td>
+      <td>&lt; 0.001</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ratios use an exact conditional binomial test and Clopper–Pearson interval, suited to small purchase counts. Intervals treat visits as independent, so repeat visits make them somewhat too narrow, and they measure chance only, not differences in who arrives.</p>
+
+<h2 id="product-views-and-later-purchases">Product views and later purchases</h2>
+
+<p>First-time visitors whose first visit came from social (Google Analytics’ visit number 1), split by whether that first visit included a product view. Later visits are linked by browser cookie.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>First visit from</th>
+      <th>Product view on first visit</th>
+      <th>Visitors</th>
+      <th>Came back</th>
+      <th>Ratio, came back (95% interval)</th>
+      <th>Bought later</th>
+      <th>Ratio, bought later (95% interval)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>YouTube</td>
+      <td>Yes</td>
+      <td>3,037</td>
+      <td>12.0%</td>
+      <td>3.3× (3.0× to 3.7×)</td>
+      <td>2</td>
+      <td>26× (2.5× to 158×)</td>
+    </tr>
+    <tr>
+      <td>YouTube</td>
+      <td>No</td>
+      <td>196,752</td>
+      <td>3.6%</td>
+      <td> </td>
+      <td>5</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Other social</td>
+      <td>Yes</td>
+      <td>903</td>
+      <td>17.1%</td>
+      <td>1.5× (1.3× to 1.7×)</td>
+      <td>5</td>
+      <td>2.4× (0.7× to 6.6×)</td>
+    </tr>
+    <tr>
+      <td>Other social</td>
+      <td>No</td>
+      <td>9,211</td>
+      <td>11.5%</td>
+      <td> </td>
+      <td>21</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Return ratios use a normal interval on the log scale; later-purchase ratios use an exact test suited to small counts (p = 0.005 for YouTube, 0.08 for other social). The YouTube later-purchase ratio is significant but rests on 7 buyers and $180 of revenue (2 viewers, $41), so its size is very uncertain; it should not be quoted without those counts. All figures are observational: visitors choose whether to view a product, so the comparison can’t separate the effect of viewing from prior interest. How later buyers arrived (all but one without a social link) and how they are credited (21 buyers and $3,362 to social, 12 buyers and $407 to other channels under the default attribution) come from Q16 (<code class="language-plaintext highlighter-rouge">data/q16_later_purchase_attribution.csv</code>).</p>
+
+<h2 id="time-from-first-social-visit-to-a-later-purchase">Time from first social visit to a later purchase</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Time after the first social visit</th>
+      <th>Later buyers</th>
+      <th>Cumulative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Under 24 hours</td>
+      <td>11</td>
+      <td>34%</td>
+    </tr>
+    <tr>
+      <td>1–7 days</td>
+      <td>6</td>
+      <td>53%</td>
+    </tr>
+    <tr>
+      <td>8–30 days</td>
+      <td>8</td>
+      <td>78%</td>
+    </tr>
+    <tr>
+      <td>31–90 days</td>
+      <td>6</td>
+      <td>97%</td>
+    </tr>
+    <tr>
+      <td>Over 90 days (longest: 114 days)</td>
+      <td>1</td>
+      <td>100%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The 32 social-first visitors who didn’t buy on their first visit but bought on a later one (a 33rd bought on both), by their first later purchase; median about 5 days. Long gaps are the most likely to be missed (cookies cleared, a change of device, or a first visit late in the one-year window), so the tail is probably understated. This sets the 90-day follow-up in Stage 2.</p>
+
+<h2 id="sizing">Sizing</h2>
+
+<p>The “what it is worth” table raises each audience’s product-view rate and holds its later steps at today’s rates: purchases per product viewer (0.32% for YouTube, 8.2% for Facebook and Google Groups) and revenue per purchasing visit ($32 and $95). The figures are best cases. Facebook and Google Groups’ $95 is lifted by a few large orders.</p>
+
+<h2 id="how-far-return-visits-could-move">How far return visits could move</h2>
+
+<p>What a landing-page test could do to YouTube visitors’ return rate (3.7% today), assuming the whole gap between product viewers (12.0% return) and non-viewers (3.6%) is caused by viewing. That is a best case: some of the gap is prior interest.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>YouTube product views rise to</th>
+      <th>Return rate</th>
+      <th>Relative rise</th>
+      <th>Visitors per group to detect it</th>
+      <th>Duration at Jun–Jul 2017 traffic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2.4% (+50%)</td>
+      <td>3.78%</td>
+      <td>+1.8%</td>
+      <td>about 1.2 million</td>
+      <td>not practical</td>
+    </tr>
+    <tr>
+      <td>5%</td>
+      <td>4.0%</td>
+      <td>+8%</td>
+      <td>about 73,000</td>
+      <td>over 2 years</td>
+    </tr>
+    <tr>
+      <td>10%</td>
+      <td>4.4%</td>
+      <td>+19%</td>
+      <td>about 12,400</td>
+      <td>about 20 weeks</td>
+    </tr>
+    <tr>
+      <td>16.4% (search’s rate)</td>
+      <td>4.9%</td>
+      <td>+33%</td>
+      <td>about 4,200</td>
+      <td>about 7 weeks</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are what to expect, not what the test measures: the test measures the landing change’s effect on returns directly. They show why Stage 2 tests a large change, and why the return-visit reading needs a longer test than the product-view one.</p>
+
+<h2 id="reproduce-it">Reproduce it</h2>
+
+<p>The queries, data and code behind every number are in the <a href="https://github.com/measuredcallshq/social-traffic-conversion-case-study">project repository</a>; the regional test sizing is the <code class="language-plaintext highlighter-rouge">geo_lift.py</code> notebook.</p>
+
+<h2 id="sources">Sources</h2>
+
+<ul>
+  <li>Google Analytics 360 sample dataset, BigQuery <code class="language-plaintext highlighter-rouge">bigquery-public-data.google_analytics_sample</code></li>
+  <li><a href="https://www.chiefmarketer.com/many-discover-products-on-social-media-but-few-purchase/">Coveo survey, via Chief Marketer (2025)</a></li>
+  <li><a href="https://ads.tiktok.com/business/en/blog/geo-lift-test">TikTok, Geo Lift Test (2024)</a></li>
+  <li>Zeger, S. L. (1988), A regression model for time series of counts, <em>Biometrika</em> 75(4)</li>
+  <li>Künsch, H. R. (1989), The jackknife and the bootstrap for general stationary observations, <em>Annals of Statistics</em> 17(3)</li>
+</ul>
+
+  </div>
+
+  <aside class="author-box">
+    <p><strong>Measured Calls</strong>: case studies in turning data into business decisions.
+      <a href="/about/">About</a>
+      · <a href="https://github.com/measuredcallshq">GitHub</a>
+    </p>
+  </aside><a class="u-url" href="/social-traffic-conversion-case-study/appendix/" hidden></a>
+</article>
+
+<script>
+// Notion-style floating contents: a column of short bars on the right edge,
+// one per heading (shorter for subsections, dark for the section being read).
+// Hovering (or tapping) the bars opens the full list of headings.
+(function () {
+  var nav = document.getElementById("toc");
+  if (!nav) return;
+  var heads = document.querySelectorAll(".post-content h2, .post-content h3");
+  if (heads.length < 3) return;
+  var rail = nav.querySelector(".toc-rail"), list = nav.querySelector(".toc-list");
+  var items = [];
+
+  function slug(t) { return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+
+  heads.forEach(function (h) {
+    if (!h.id) h.id = slug(h.textContent);
+    var lvl = h.tagName === "H2" ? 2 : 3;
+    var bar = document.createElement("span"); bar.className = "toc-bar toc-bar-l" + lvl; rail.appendChild(bar);
+    var li = document.createElement("li"); li.className = "toc-l" + lvl;
+    var a = document.createElement("a"); a.href = "#" + h.id; a.textContent = h.textContent;
+    li.appendChild(a); list.appendChild(li);
+    items.push({ h: h, bar: bar, li: li });
+  });
+  nav.hidden = false;
+
+  // Touch screens have no hover: tap the bars to open, tap a heading or outside to close.
+  rail.addEventListener("click", function () { nav.classList.toggle("open"); });
+  list.addEventListener("click", function (e) { if (e.target.tagName === "A") nav.classList.remove("open"); });
+  document.addEventListener("click", function (e) { if (!nav.contains(e.target)) nav.classList.remove("open"); });
+
+  function setActive(h) {
+    items.forEach(function (it) {
+      var on = it.h === h;
+      it.bar.classList.toggle("active", on);
+      it.li.classList.toggle("active", on);
+      if (on && nav.matches(":hover")) {
+        var p = nav.querySelector(".toc-panel"), top = it.li.offsetTop;
+        if (top < p.scrollTop || top > p.scrollTop + p.clientHeight - 30) p.scrollTop = top - p.clientHeight / 3;
+      }
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target); });
+    }, { rootMargin: "0px 0px -75% 0px" });
+    items.forEach(function (it) { obs.observe(it.h); });
+  }
+})();
+</script>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper"><span class="footer-copyright">&copy; 2026 Measured Calls
+      · <a href="https://github.com/measuredcallshq">GitHub</a>
+      · <a href="/feed.xml">RSS</a>
+      · <a href="/privacy/">Privacy</a></span>
+  </div>
+
+</footer>
+</body>
+
+</html>

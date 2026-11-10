@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://measuredcallshq.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://measuredcallshq.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-11-10T11:29:53-05:00</updated><id>https://measuredcallshq.github.io/feed.xml</id><title type="html">Measured Calls</title><subtitle>Data-informed, human-decided. Practical analytics for leaders: choosing the right approach, learning what the data shows, and acting on what&apos;s best for the business.</subtitle><author><name>{&quot;name&quot; =&gt; &quot;&quot;}</name></author><entry><title type="html">How to Build an Analytics Agent Your Business Can Trust</title><link href="https://measuredcallshq.github.io/analytics-agent-your-business-can-trust/" rel="alternate" type="text/html" title="How to Build an Analytics Agent Your Business Can Trust" /><published>2026-11-04T00:00:00-05:00</published><updated>2026-11-04T00:00:00-05:00</updated><id>https://measuredcallshq.github.io/analytics-agent-your-business-can-trust</id><content type="html" xml:base="https://measuredcallshq.github.io/analytics-agent-your-business-can-trust/">&lt;p&gt;&lt;em&gt;How business and engineering can work together to make an analytics agent reliable enough to depend on. A five-minute read; the technical detail is in the &lt;a href=&quot;#technical-appendix&quot;&gt;technical appendix&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;summary-card&quot;&gt;
+
+  &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;The risk:&lt;/strong&gt; an AI model is sometimes confidently wrong. If it can query your data and report numbers unchecked, its mistakes become your organization’s mistakes.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;The fix:&lt;/strong&gt; trust comes from the system around the model, not from the model. Every action is checked before it happens, firm rules are enforced in code, and a person signs off where it matters.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;What to decide:&lt;/strong&gt; six requirements and a handful of open questions to settle with your engineers, listed in &lt;a href=&quot;#decide-what-goes-in-the-harness-together&quot;&gt;Decide what goes in the harness, together&lt;/a&gt; below.&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;when-the-ai-is-wrong-the-organization-pays&quot;&gt;When the AI is wrong, the organization pays&lt;/h2&gt;
+
+&lt;p&gt;In 2024, a Canadian tribunal ordered Air Canada to compensate a customer after the chatbot on its website gave him wrong advice about bereavement fares. The airline argued that the chatbot was responsible for its own words. The tribunal disagreed: the chatbot was part of Air Canada’s website, and the airline &lt;strong&gt;had not taken reasonable care to make sure it was accurate&lt;/strong&gt; (&lt;a href=&quot;https://www.mondaq.com/canada/new-technology/1427926/airline-ordered-to-compensate-a-bc-man-because-its-chatbot-provided-inaccurate-information&quot;&gt;Moffatt v. Air Canada, 2024 BCCRT 149&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;The amount was small, but the lesson wasn’t: &lt;strong&gt;whatever your AI says or does, your organization owns it.&lt;/strong&gt; Analytics agents raise the stakes: they don’t only answer questions, they query your data and put numbers in front of the people making decisions.&lt;/p&gt;
+
+&lt;h2 id=&quot;think-of-it-as-a-brilliant-new-hire&quot;&gt;Think of it as a brilliant new hire&lt;/h2&gt;
+
+&lt;p&gt;Imagine hiring a brilliant analyst who is fast and well read, but now and then states something wrong with complete confidence. You wouldn’t let them send numbers to leadership unchecked on day one. You’d set up a process: &lt;strong&gt;they propose, the process checks, and only approved actions go through.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;An AI model needs the same process, for the same reason. &lt;strong&gt;Each time it acts, there’s a chance it’s right and a chance it’s wrong.&lt;/strong&gt; For a brainstorm or a first draft, that’s fine. For &lt;strong&gt;anything that reaches leadership, a regulator or a customer&lt;/strong&gt;, it isn’t.&lt;/p&gt;
+
+&lt;h2 id=&quot;trust-comes-from-the-system-not-the-model&quot;&gt;Trust comes from the system, not the model&lt;/h2&gt;
+
+&lt;p&gt;While building an AI workflow project this year, I learned that the choice of model matters less than one thing: making sure business rules are always followed and risks stay low. That’s the job of a layer engineers call the &lt;strong&gt;harness&lt;/strong&gt;. It sits between the model and your systems, and decides whether each step the model proposes goes ahead.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png&quot; alt=&quot;Figure 1. Analytics agent architecture: the same agent without and with a harness that checks every request&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Without a harness,&lt;/strong&gt; the model queries your data and reports numbers directly, deciding inside a black box you can’t see into or control. Often it’s right. When it’s wrong, the mistake has already happened.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;With a harness,&lt;/strong&gt; every step is checked against rules the AI can’t override. A wrong step is blocked, &lt;strong&gt;people approve anything with real consequences&lt;/strong&gt;, and every step is recorded. You gain:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Efficiency:&lt;/strong&gt; a fixed path leaves the AI less room to wander off or make things up.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Protection:&lt;/strong&gt; no number reaches a decision maker without passing the checks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Prototype without it, deliver with it.&lt;/strong&gt; Working directly with the model is the fastest way to explore and shape a workflow. Once people depend on the workflow, add the harness, and turn &lt;strong&gt;each failure you catch into a new check&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In an analytics agent, that looks like this:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;The agent does&lt;/th&gt;
+      &lt;th&gt;A rule enforced in code&lt;/th&gt;
+      &lt;th&gt;A person decides&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Writes and runs queries&lt;/td&gt;
+      &lt;td&gt;Read-only access; personal data stays out of results&lt;/td&gt;
+      &lt;td&gt;Which data the agent may use&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Uses business metrics&lt;/td&gt;
+      &lt;td&gt;Only approved definitions, such as “active customer”&lt;/td&gt;
+      &lt;td&gt;Which definitions are official&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Reports numbers&lt;/td&gt;
+      &lt;td&gt;Every number links to the query behind it, and totals reconcile with finance&lt;/td&gt;
+      &lt;td&gt;What goes to leadership&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;decide-what-goes-in-the-harness-together&quot;&gt;Decide what goes in the harness, together&lt;/h2&gt;
+
+&lt;p&gt;The harness turns business decisions into rules, so build it as a team: the business sets the requirements, engineers turn each into a check.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The business decides:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;The need:&lt;/strong&gt; the business problem to address and the value of solving it.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Hard rules:&lt;/strong&gt; policies and regulations that must always hold.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Risks:&lt;/strong&gt; what must never go wrong, ranked by cost.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Sign-offs:&lt;/strong&gt; where a person must approve, and who.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Data:&lt;/strong&gt; what’s sensitive, which privacy laws apply, and what may leave the company.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Records:&lt;/strong&gt; what’s logged, and how quality is reviewed.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Settle together:&lt;/strong&gt; turning the need into a specific problem with a measurable target; which rules are strict code and which need judgment; what the agent does when unsure; how much it does alone at launch, and what track record earns it more; who maintains the checks after launch. If the steps are known, choose a &lt;strong&gt;workflow&lt;/strong&gt; with AI in each step over an open-ended &lt;strong&gt;agent&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The same approach applies to other kinds of agents, such as those that support decisions or triage work.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;For readers interested in more detail, the &lt;a href=&quot;#technical-appendix&quot;&gt;technical appendix&lt;/a&gt; shows how the system works.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;technical-appendix&quot;&gt;Technical appendix&lt;/h2&gt;
+
+&lt;h3 id=&quot;how-an-agent-works&quot;&gt;How an agent works&lt;/h3&gt;
+
+&lt;p&gt;An agent is a loop. Each turn, the harness sends the model the task and progress so far; the model replies with a &lt;strong&gt;tool call&lt;/strong&gt; (a request such as “run this query”); the harness checks it, runs it if allowed, and returns the result. The loop repeats until the task is done.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/analytics-agent-your-business-can-trust/aie-01-agent-loop.png&quot; alt=&quot;Figure A1. The agent loop: the model suggests each step, the harness checks and acts&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;three-layers-of-control&quot;&gt;Three layers of control&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/analytics-agent-your-business-can-trust/aie-02-three-layers.png&quot; alt=&quot;Figure A2. Three layers of AI guardrails: instructions, harness checks and checks outside the AI&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Instructions&lt;/strong&gt; (prompts, skills) guide the model, but it may not always follow them.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Harness checks&lt;/strong&gt; (guardrails, hooks) run automatically on every action and can block it.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Outside checks&lt;/strong&gt; (tests, reviews, audits) catch whatever slipped through.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Checks that compare facts (permissions, limits, order of steps, required sources) can be strict code. Checks that need judgment, such as “does this summary match the data?”, rely on an AI reviewer or a person, so they need a safe default: when unsure, escalate.&lt;/p&gt;
+
+&lt;h3 id=&quot;enforcing-the-order-of-work&quot;&gt;Enforcing the order of work&lt;/h3&gt;
+
+&lt;p&gt;For known steps, a &lt;strong&gt;state machine&lt;/strong&gt; fixes the stages and the allowed moves between them. Here is an analytics request:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/analytics-agent-your-business-can-trust/aie-03-analytics-stages.png&quot; alt=&quot;Figure A3. Human-in-the-loop analytics request: the AI drafts, code checks the query, an analyst approves&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Each item’s stage is worked out from records, not from what the model reports, and approvals are recorded by people only, so the AI can’t approve its own work.&lt;/p&gt;
+
+&lt;h3 id=&quot;ways-to-build-it&quot;&gt;Ways to build it&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Approach&lt;/th&gt;
+      &lt;th&gt;Fits when&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;An agent app with hooks and plugins (e.g. Claude Code)&lt;/td&gt;
+      &lt;td&gt;People stay in the loop and the process still changes&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;An agent SDK (e.g. Claude Agent SDK)&lt;/td&gt;
+      &lt;td&gt;Checks must run inside your own application&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A graph framework (e.g. LangGraph)&lt;/td&gt;
+      &lt;td&gt;The flow is stable and runs at volume or unattended&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;terms-youll-hear&quot;&gt;Terms you’ll hear&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Harness / runtime:&lt;/strong&gt; the program that runs the loop, executes tools and enforces rules.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Tool call:&lt;/strong&gt; the model’s request to use a tool.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Guardrail / hook:&lt;/strong&gt; an automatic check that can block an action.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Human-in-the-loop:&lt;/strong&gt; a point where a person must approve.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;MCP:&lt;/strong&gt; a standard way to connect tools and data to an agent.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Evals:&lt;/strong&gt; tests of the agent’s quality, rerun after every change.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Tracing:&lt;/strong&gt; a record of every step the agent took.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Sources: &lt;a href=&quot;https://www.mondaq.com/canada/new-technology/1427926/airline-ordered-to-compensate-a-bc-man-because-its-chatbot-provided-inaccurate-information&quot;&gt;Moffatt v. Air Canada, 2024 BCCRT 149 (summary)&lt;/a&gt; · &lt;a href=&quot;https://www.anthropic.com/research/building-effective-agents&quot;&gt;Building effective agents, Anthropic&lt;/a&gt; · &lt;a href=&quot;https://code.claude.com/docs/en/agent-sdk/hooks&quot;&gt;Claude Agent SDK hooks&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</content><author><name>{&quot;name&quot; =&gt; &quot;&quot;}</name></author><summary type="html">What happens when your analytics agent is confidently wrong? Trust doesn&apos;t come from a smarter model. It comes from a system where the AI drafts, code checks and people decide. Here&apos;s how to design one.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://measuredcallshq.github.io/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png" /><media:content medium="image" url="https://measuredcallshq.github.io/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Is Your Social Investment Paying Off? How to Measure What Reports Miss</title><link href="https://measuredcallshq.github.io/social-traffic-conversion-case-study/" rel="alternate" type="text/html" title="Is Your Social Investment Paying Off? How to Measure What Reports Miss" /><published>2026-10-29T00:00:00-04:00</published><updated>2026-10-29T00:00:00-04:00</updated><id>https://measuredcallshq.github.io/social-traffic-conversion-case-study</id><content type="html" xml:base="https://measuredcallshq.github.io/social-traffic-conversion-case-study/">&lt;p&gt;&lt;em&gt;A worked example on Google’s public Merchandise Store data. A five-minute read; method, statistics and test sizing are in the &lt;a href=&quot;/social-traffic-conversion-case-study/appendix/&quot;&gt;technical appendix&lt;/a&gt;, and the queries, code and data in the &lt;a href=&quot;https://github.com/measuredcallshq/social-traffic-conversion-case-study&quot;&gt;project repository&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;summary-card&quot;&gt;
+
+  &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Where social stands:&lt;/strong&gt; social brings a quarter of the store’s visits but only 0.5% of its revenue. Just 0.05% of social visits include a purchase, against 0.77% for outside customers.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;The question:&lt;/strong&gt; should the business invest in social content to lift its sales?&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;The answer:&lt;/strong&gt; not yet. Measured directly through the channel, there is little room: getting more social visitors to view products, the step where most are lost, would add at most about $5,500 a year, 0.3% of store revenue. The route that could matter, shoppers who discover products on social and buy later through another channel, can’t be seen in today’s data, so it has to be tested.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;The recommendation:&lt;/strong&gt; don’t invest more yet. Start with two low-cost stages, about ten weeks of staff time and no ad spend, to test whether better landing pages make social visitors engage and come back. Separately, run a regional paid-social test of a specific campaign, the one test that can show whether social lifts the store’s total sales, if the business judges a big win likely enough to risk the test’s ad spend.&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;why-social-is-hard-to-judge&quot;&gt;Why social is hard to judge&lt;/h2&gt;
+
+&lt;p&gt;Shoppers increasingly find products on social media and buy somewhere else: in one 2024 survey, 73% said they regularly find products while browsing social, but only 10% buy inside the platform (&lt;a href=&quot;https://www.chiefmarketer.com/many-discover-products-on-social-media-but-few-purchase/&quot;&gt;Coveo, 2025&lt;/a&gt;). Those later purchases, through search, a typed-in visit or another device, are largely invisible to website analytics, which only credits a sale to social when it happens on a visit traced back to social. That’s why platforms such as TikTok now offer regional “geo-lift” tests (&lt;a href=&quot;https://ads.tiktok.com/business/en/blog/geo-lift-test&quot;&gt;TikTok, 2024&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;This case study uses one year of Google’s public Merchandise Store data, from August 2016 to August 2017. Its figures describe that store at that time. &lt;strong&gt;The point is the method:&lt;/strong&gt; size what social brings, find where its visitors drop away, and test cheaply, with a stop rule at each step, before committing budget.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-the-data-shows&quot;&gt;What the data shows&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/social-traffic/01-conversion-by-channel.png&quot; alt=&quot;Figure 1. Visits, conversion and revenue by channel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Figure 1. Each channel’s share of visits, share of visits with a purchase, and share of revenue. The dashed line is the average for outside customers (0.77%), leaving out Google’s own staff, who would flatter the average.&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Social visits rarely buy.&lt;/strong&gt; 0.05% include a purchase, against 0.77% for outside customers: &lt;strong&gt;17 times lower&lt;/strong&gt;. YouTube brings 94% of social visits and behaves like an awareness audience.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Social traffic is shrinking.&lt;/strong&gt; Monthly visits fell 95% from their November 2016 peak, so yearly figures overstate what’s ahead.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Social’s buyers are a narrow base.&lt;/strong&gt; Facebook and Google Groups bring 3% of social visits but 87% of its revenue, and part of that looks like Google employees, a few large orders and one burst in May 2017.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;two-ways-social-could-lift-sales&quot;&gt;Two ways social could lift sales&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Buy in the same visit: little room.&lt;/strong&gt; Most social visitors leave before seeing a product: 2 in 100 view one, against 16 in 100 from search. Fixing that step is worth at most about &lt;strong&gt;$5,500 a year&lt;/strong&gt; (0.3% of revenue), and less at today’s traffic.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Discover on social, buy elsewhere: a route to store-wide lift.&lt;/strong&gt; Analytics reports show this route adding only about &lt;strong&gt;$400 a year&lt;/strong&gt; of later sales beyond what social is already credited with, but that undercounts it: shoppers who switch device or clear cookies look like new visitors, so their purchases are credited elsewhere. One hint is worth testing: social visitors who view a product come back 1.5 to 3.3 times as often.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;In short: analytics reports can’t see all the sales that start on social and finish elsewhere, so further tests are needed to find out whether this channel has missed potential.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-plan-cheapest-first-each-test-with-its-own-decision&quot;&gt;The plan: cheapest first, each test with its own decision&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Organic or paid?&lt;/strong&gt; The data can’t tell organic social visits from paid ones, because none carry a campaign tag. The plan doesn’t need to: Stage 2 tests the social traffic the store already gets, at no extra ad cost, and runs until it reaches its planned number of visitors; Stage 3 tests a new paid program, because only paid ads can be switched on in chosen regions.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Stage&lt;/th&gt;
+      &lt;th&gt;Question&lt;/th&gt;
+      &lt;th&gt;Time&lt;/th&gt;
+      &lt;th&gt;Cost&lt;/th&gt;
+      &lt;th&gt;Decision&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;1. Groundwork&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Can we track what the later tests are judged on: paid vs unpaid visits, each visitor’s test group and engaged time, sales by metro area with at least two years of history, and who social’s buyers are?&lt;/td&gt;
+      &lt;td&gt;2 weeks&lt;/td&gt;
+      &lt;td&gt;Staff time&lt;/td&gt;
+      &lt;td&gt;None: a prerequisite. Stages 2 and 3 start once link, test-group and engaged-time tracking is live and metro-level sales reporting is in place&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;2. Landing-page test&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;After clicking, do social visitors engage more with products and come back more?&lt;/td&gt;
+      &lt;td&gt;~8 weeks (engagement); ~18 weeks + 90 days (return visits)&lt;/td&gt;
+      &lt;td&gt;Staff time, one page variant&lt;/td&gt;
+      &lt;td&gt;Keep the new page if engagement or return visits clearly rise. Either way, Stage 3 can go ahead&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;3. Regional paid test&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Does seeing paid social content lift total store sales?&lt;/td&gt;
+      &lt;td&gt;~17 weeks: 13 of ads, 4 of follow-up&lt;/td&gt;
+      &lt;td&gt;Up to about $20,500 of ads in the campaign regions, plus content&lt;/td&gt;
+      &lt;td&gt;Keep ad spend below what a big win would repay, so a win pays for itself during the test. Scale to all regions on a rise that pays back (see “Weighing Stage 3” and “Reading Stage 3” below)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;4. Decide&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Scale, or keep social as low-cost awareness&lt;/td&gt;
+      &lt;td&gt;Each quarter&lt;/td&gt;
+      &lt;td&gt;—&lt;/td&gt;
+      &lt;td&gt;—&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Stages 2 and 3 test different things: Stage 2, what visitors do after they click; Stage 3, whether seeing social content lifts total sales. Start with the cheaper Stage 2, but a “no” there doesn’t block Stage 3, which depends on budget.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Weighing Stage 3.&lt;/strong&gt; Weekly sales are small and uneven by region, so the regional test can only see a big effect. Run across about 24 markets for 13 weeks, it reliably sees a rise of about &lt;strong&gt;27% or more&lt;/strong&gt; in total sales in the campaign regions (between about 21% and 35%, given one year of data): about $124,000 a year of extra sales, 15 times what social is credited with today. Over the 13 weeks of ads and 4 of follow-up, that rise brings about $20,500 of profit at a 50% gross margin. Keep the campaign’s ad spend below that, about $225 a day, and a big win pays for itself while the test runs; scaled to all regions, it then keeps adding profit for as long as it works. If it isn’t a big win, the most lost is the ad spend during the test, plus content. A longer campaign sees a smaller rise but allows less spend a day (26 weeks: 22%, about $160 a day). How likely a big win is can’t be read from the data: it is an assumption for the decision maker. A “no clear lift” means this campaign isn’t a big win, not that social has no effect.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reading Stage 3.&lt;/strong&gt; A measured rise of 18% or more shows the ads did something; about 27% or more means the best estimate is that they paid back at that spend. The &lt;a href=&quot;/social-traffic-conversion-case-study/appendix/#detail-stage-3-regional-test&quot;&gt;appendix&lt;/a&gt; gives the full test design and its limits.&lt;/p&gt;
+
+&lt;h2 id=&quot;decisions-needed-now&quot;&gt;Decisions needed now&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Approve Stages 1 and 2.&lt;/strong&gt; Staff time only.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Agree the thresholds before testing:&lt;/strong&gt; the rise in return visits worth acting on (working figure +20%) and the rise in sales worth paying for. Fixing them in advance makes a “no” as clear as a “yes”.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Decide whether to run Stage 3.&lt;/strong&gt; Weigh the chance of a big win, the decision maker’s assumption, against the test’s ad spend, kept below what a big win would repay (see “Weighing Stage 3”). If not, smaller paid trials are better judged on tagged paid-link results.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;For readers interested in more detail, the &lt;a href=&quot;/social-traffic-conversion-case-study/appendix/&quot;&gt;technical appendix&lt;/a&gt; covers the full channel figures and the design and sizing of each test, and the &lt;a href=&quot;https://github.com/measuredcallshq/social-traffic-conversion-case-study&quot;&gt;project repository&lt;/a&gt; holds the queries, code and data behind every number.&lt;/em&gt;&lt;/p&gt;</content><author><name>{&quot;name&quot; =&gt; &quot;&quot;}</name></author><summary type="html">Social brings a quarter of the store&apos;s visits but 0.5% of its revenue. Is it a growth lever, or just awareness? A worked example on Google&apos;s public Merchandise Store data: size what social brings, find where its visitors drop away, and design low-cost tests with stop rules before committing budget.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://measuredcallshq.github.io/assets/img/social-traffic/01-conversion-by-channel.png" /><media:content medium="image" url="https://measuredcallshq.github.io/assets/img/social-traffic/01-conversion-by-channel.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

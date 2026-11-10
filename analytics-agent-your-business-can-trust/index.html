@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to Build an Analytics Agent Your Business Can Trust | Measured Calls</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="How to Build an Analytics Agent Your Business Can Trust" />
+<meta name="author" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to build a trustworthy analytics agent: why trust comes from the system around the model, and what business and engineering should decide together." />
+<meta property="og:description" content="How to build a trustworthy analytics agent: why trust comes from the system around the model, and what business and engineering should decide together." />
+<link rel="canonical" href="https://measuredcallshq.github.io/analytics-agent-your-business-can-trust/" />
+<meta property="og:url" content="https://measuredcallshq.github.io/analytics-agent-your-business-can-trust/" />
+<meta property="og:site_name" content="Measured Calls" />
+<meta property="og:image" content="https://measuredcallshq.github.io/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-04T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://measuredcallshq.github.io/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png" />
+<meta property="twitter:title" content="How to Build an Analytics Agent Your Business Can Trust" />
+<script type="application/ld+json">
+{"url":"https://measuredcallshq.github.io/analytics-agent-your-business-can-trust/","headline":"How to Build an Analytics Agent Your Business Can Trust","dateModified":"2026-11-04T00:00:00-05:00","datePublished":"2026-11-04T00:00:00-05:00","description":"How to build a trustworthy analytics agent: why trust comes from the system around the model, and what business and engineering should decide together.","mainEntityOfPage":{"@type":"WebPage","@id":"https://measuredcallshq.github.io/analytics-agent-your-business-can-trust/"},"author":{"@type":"Person","name":""},"@type":"BlogPosting","image":"https://measuredcallshq.github.io/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://measuredcallshq.github.io/feed.xml" title="Measured Calls" /><script defer src="https://cloud.umami.is/script.js" data-website-id="e03cd52a-4199-4e36-b0c2-2d3a0d339734"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">Measured Calls</a><nav class="site-nav">
+      <a class="page-link" href="/#case-studies">Posts</a>
+      <a class="page-link" href="/about/">About</a>
+      <a class="page-link" href="/contact/">Contact</a>
+      <a class="page-link nav-github" href="https://github.com/measuredcallshq/measuredcallshq.github.io" aria-label="View the source on GitHub">
+        <img class="nav-github-icon" src="/assets/img/icons/github.svg" alt="" width="20" height="20">
+      </a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting"><a class="back-link" href="/">&larr; All posts</a><header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to Build an Analytics Agent Your Business Can Trust</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-11-04T00:00:00-05:00" itemprop="datePublished">Nov 4, 2026
+      </time></p>
+  </header><nav class="toc" id="toc" aria-label="Contents" hidden>
+    <div class="toc-rail" aria-hidden="true"></div>
+    <div class="toc-panel">
+      <ol class="toc-list"></ol>
+    </div>
+  </nav><div class="post-content e-content" itemprop="articleBody">
+    <p><em>How business and engineering can work together to make an analytics agent reliable enough to depend on. A five-minute read; the technical detail is in the <a href="#technical-appendix">technical appendix</a>.</em></p>
+
+<div class="summary-card">
+
+  <h2 id="summary">Summary</h2>
+
+  <ul>
+    <li><strong>The risk:</strong> an AI model is sometimes confidently wrong. If it can query your data and report numbers unchecked, its mistakes become your organization’s mistakes.</li>
+    <li><strong>The fix:</strong> trust comes from the system around the model, not from the model. Every action is checked before it happens, firm rules are enforced in code, and a person signs off where it matters.</li>
+    <li><strong>What to decide:</strong> six requirements and a handful of open questions to settle with your engineers, listed in <a href="#decide-what-goes-in-the-harness-together">Decide what goes in the harness, together</a> below.</li>
+  </ul>
+
+</div>
+
+<h2 id="when-the-ai-is-wrong-the-organization-pays">When the AI is wrong, the organization pays</h2>
+
+<p>In 2024, a Canadian tribunal ordered Air Canada to compensate a customer after the chatbot on its website gave him wrong advice about bereavement fares. The airline argued that the chatbot was responsible for its own words. The tribunal disagreed: the chatbot was part of Air Canada’s website, and the airline <strong>had not taken reasonable care to make sure it was accurate</strong> (<a href="https://www.mondaq.com/canada/new-technology/1427926/airline-ordered-to-compensate-a-bc-man-because-its-chatbot-provided-inaccurate-information">Moffatt v. Air Canada, 2024 BCCRT 149</a>).</p>
+
+<p>The amount was small, but the lesson wasn’t: <strong>whatever your AI says or does, your organization owns it.</strong> Analytics agents raise the stakes: they don’t only answer questions, they query your data and put numbers in front of the people making decisions.</p>
+
+<h2 id="think-of-it-as-a-brilliant-new-hire">Think of it as a brilliant new hire</h2>
+
+<p>Imagine hiring a brilliant analyst who is fast and well read, but now and then states something wrong with complete confidence. You wouldn’t let them send numbers to leadership unchecked on day one. You’d set up a process: <strong>they propose, the process checks, and only approved actions go through.</strong></p>
+
+<p>An AI model needs the same process, for the same reason. <strong>Each time it acts, there’s a chance it’s right and a chance it’s wrong.</strong> For a brainstorm or a first draft, that’s fine. For <strong>anything that reaches leadership, a regulator or a customer</strong>, it isn’t.</p>
+
+<h2 id="trust-comes-from-the-system-not-the-model">Trust comes from the system, not the model</h2>
+
+<p>While building an AI workflow project this year, I learned that the choice of model matters less than one thing: making sure business rules are always followed and risks stay low. That’s the job of a layer engineers call the <strong>harness</strong>. It sits between the model and your systems, and decides whether each step the model proposes goes ahead.</p>
+
+<p><img src="/assets/img/analytics-agent-your-business-can-trust/aie-01-with-without-harness.png" alt="Figure 1. Analytics agent architecture: the same agent without and with a harness that checks every request" /></p>
+
+<p><strong>Without a harness,</strong> the model queries your data and reports numbers directly, deciding inside a black box you can’t see into or control. Often it’s right. When it’s wrong, the mistake has already happened.</p>
+
+<p><strong>With a harness,</strong> every step is checked against rules the AI can’t override. A wrong step is blocked, <strong>people approve anything with real consequences</strong>, and every step is recorded. You gain:</p>
+
+<ul>
+  <li><strong>Efficiency:</strong> a fixed path leaves the AI less room to wander off or make things up.</li>
+  <li><strong>Protection:</strong> no number reaches a decision maker without passing the checks.</li>
+</ul>
+
+<p><strong>Prototype without it, deliver with it.</strong> Working directly with the model is the fastest way to explore and shape a workflow. Once people depend on the workflow, add the harness, and turn <strong>each failure you catch into a new check</strong>.</p>
+
+<p>In an analytics agent, that looks like this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>The agent does</th>
+      <th>A rule enforced in code</th>
+      <th>A person decides</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writes and runs queries</td>
+      <td>Read-only access; personal data stays out of results</td>
+      <td>Which data the agent may use</td>
+    </tr>
+    <tr>
+      <td>Uses business metrics</td>
+      <td>Only approved definitions, such as “active customer”</td>
+      <td>Which definitions are official</td>
+    </tr>
+    <tr>
+      <td>Reports numbers</td>
+      <td>Every number links to the query behind it, and totals reconcile with finance</td>
+      <td>What goes to leadership</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="decide-what-goes-in-the-harness-together">Decide what goes in the harness, together</h2>
+
+<p>The harness turns business decisions into rules, so build it as a team: the business sets the requirements, engineers turn each into a check.</p>
+
+<p><strong>The business decides:</strong></p>
+
+<ol>
+  <li><strong>The need:</strong> the business problem to address and the value of solving it.</li>
+  <li><strong>Hard rules:</strong> policies and regulations that must always hold.</li>
+  <li><strong>Risks:</strong> what must never go wrong, ranked by cost.</li>
+  <li><strong>Sign-offs:</strong> where a person must approve, and who.</li>
+  <li><strong>Data:</strong> what’s sensitive, which privacy laws apply, and what may leave the company.</li>
+  <li><strong>Records:</strong> what’s logged, and how quality is reviewed.</li>
+</ol>
+
+<p><strong>Settle together:</strong> turning the need into a specific problem with a measurable target; which rules are strict code and which need judgment; what the agent does when unsure; how much it does alone at launch, and what track record earns it more; who maintains the checks after launch. If the steps are known, choose a <strong>workflow</strong> with AI in each step over an open-ended <strong>agent</strong>.</p>
+
+<p>The same approach applies to other kinds of agents, such as those that support decisions or triage work.</p>
+
+<p><em>For readers interested in more detail, the <a href="#technical-appendix">technical appendix</a> shows how the system works.</em></p>
+
+<hr />
+
+<h2 id="technical-appendix">Technical appendix</h2>
+
+<h3 id="how-an-agent-works">How an agent works</h3>
+
+<p>An agent is a loop. Each turn, the harness sends the model the task and progress so far; the model replies with a <strong>tool call</strong> (a request such as “run this query”); the harness checks it, runs it if allowed, and returns the result. The loop repeats until the task is done.</p>
+
+<p><img src="/assets/img/analytics-agent-your-business-can-trust/aie-01-agent-loop.png" alt="Figure A1. The agent loop: the model suggests each step, the harness checks and acts" /></p>
+
+<h3 id="three-layers-of-control">Three layers of control</h3>
+
+<p><img src="/assets/img/analytics-agent-your-business-can-trust/aie-02-three-layers.png" alt="Figure A2. Three layers of AI guardrails: instructions, harness checks and checks outside the AI" /></p>
+
+<ol>
+  <li><strong>Instructions</strong> (prompts, skills) guide the model, but it may not always follow them.</li>
+  <li><strong>Harness checks</strong> (guardrails, hooks) run automatically on every action and can block it.</li>
+  <li><strong>Outside checks</strong> (tests, reviews, audits) catch whatever slipped through.</li>
+</ol>
+
+<p>Checks that compare facts (permissions, limits, order of steps, required sources) can be strict code. Checks that need judgment, such as “does this summary match the data?”, rely on an AI reviewer or a person, so they need a safe default: when unsure, escalate.</p>
+
+<h3 id="enforcing-the-order-of-work">Enforcing the order of work</h3>
+
+<p>For known steps, a <strong>state machine</strong> fixes the stages and the allowed moves between them. Here is an analytics request:</p>
+
+<p><img src="/assets/img/analytics-agent-your-business-can-trust/aie-03-analytics-stages.png" alt="Figure A3. Human-in-the-loop analytics request: the AI drafts, code checks the query, an analyst approves" /></p>
+
+<p>Each item’s stage is worked out from records, not from what the model reports, and approvals are recorded by people only, so the AI can’t approve its own work.</p>
+
+<h3 id="ways-to-build-it">Ways to build it</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Approach</th>
+      <th>Fits when</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>An agent app with hooks and plugins (e.g. Claude Code)</td>
+      <td>People stay in the loop and the process still changes</td>
+    </tr>
+    <tr>
+      <td>An agent SDK (e.g. Claude Agent SDK)</td>
+      <td>Checks must run inside your own application</td>
+    </tr>
+    <tr>
+      <td>A graph framework (e.g. LangGraph)</td>
+      <td>The flow is stable and runs at volume or unattended</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="terms-youll-hear">Terms you’ll hear</h3>
+
+<ul>
+  <li><strong>Harness / runtime:</strong> the program that runs the loop, executes tools and enforces rules.</li>
+  <li><strong>Tool call:</strong> the model’s request to use a tool.</li>
+  <li><strong>Guardrail / hook:</strong> an automatic check that can block an action.</li>
+  <li><strong>Human-in-the-loop:</strong> a point where a person must approve.</li>
+  <li><strong>MCP:</strong> a standard way to connect tools and data to an agent.</li>
+  <li><strong>Evals:</strong> tests of the agent’s quality, rerun after every change.</li>
+  <li><strong>Tracing:</strong> a record of every step the agent took.</li>
+</ul>
+
+<p><em>Sources: <a href="https://www.mondaq.com/canada/new-technology/1427926/airline-ordered-to-compensate-a-bc-man-because-its-chatbot-provided-inaccurate-information">Moffatt v. Air Canada, 2024 BCCRT 149 (summary)</a> · <a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents, Anthropic</a> · <a href="https://code.claude.com/docs/en/agent-sdk/hooks">Claude Agent SDK hooks</a></em></p>
+
+
+  </div>
+
+  <aside class="author-box">
+    <p><strong>Measured Calls</strong>: case studies in turning data into business decisions.
+      <a href="/about/">About</a>
+      · <a href="https://github.com/measuredcallshq">GitHub</a>
+    </p>
+  </aside><a class="u-url" href="/analytics-agent-your-business-can-trust/" hidden></a>
+</article>
+
+<script>
+// Notion-style floating contents: a column of short bars on the right edge,
+// one per heading (shorter for subsections, dark for the section being read).
+// Hovering (or tapping) the bars opens the full list of headings.
+(function () {
+  var nav = document.getElementById("toc");
+  if (!nav) return;
+  var heads = document.querySelectorAll(".post-content h2, .post-content h3");
+  if (heads.length < 3) return;
+  var rail = nav.querySelector(".toc-rail"), list = nav.querySelector(".toc-list");
+  var items = [];
+
+  function slug(t) { return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+
+  heads.forEach(function (h) {
+    if (!h.id) h.id = slug(h.textContent);
+    var lvl = h.tagName === "H2" ? 2 : 3;
+    var bar = document.createElement("span"); bar.className = "toc-bar toc-bar-l" + lvl; rail.appendChild(bar);
+    var li = document.createElement("li"); li.className = "toc-l" + lvl;
+    var a = document.createElement("a"); a.href = "#" + h.id; a.textContent = h.textContent;
+    li.appendChild(a); list.appendChild(li);
+    items.push({ h: h, bar: bar, li: li });
+  });
+  nav.hidden = false;
+
+  // Touch screens have no hover: tap the bars to open, tap a heading or outside to close.
+  rail.addEventListener("click", function () { nav.classList.toggle("open"); });
+  list.addEventListener("click", function (e) { if (e.target.tagName === "A") nav.classList.remove("open"); });
+  document.addEventListener("click", function (e) { if (!nav.contains(e.target)) nav.classList.remove("open"); });
+
+  function setActive(h) {
+    items.forEach(function (it) {
+      var on = it.h === h;
+      it.bar.classList.toggle("active", on);
+      it.li.classList.toggle("active", on);
+      if (on && nav.matches(":hover")) {
+        var p = nav.querySelector(".toc-panel"), top = it.li.offsetTop;
+        if (top < p.scrollTop || top > p.scrollTop + p.clientHeight - 30) p.scrollTop = top - p.clientHeight / 3;
+      }
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target); });
+    }, { rootMargin: "0px 0px -75% 0px" });
+    items.forEach(function (it) { obs.observe(it.h); });
+  }
+})();
+</script>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper"><span class="footer-copyright">&copy; 2026 Measured Calls
+      · <a href="https://github.com/measuredcallshq">GitHub</a>
+      · <a href="/feed.xml">RSS</a>
+      · <a href="/privacy/">Privacy</a></span>
+  </div>
+
+</footer>
+</body>
+
+</html>
